@@ -7,11 +7,14 @@
 # Steps
 
 - clone this project git clone https://github.com/Toad169/larabruh.git
-- open the terminal, run cd on the cloned project, run composer install and run npm install
-- copy the .env.example to .env
-- run php artisan migrate
-- run php artisan key:generate
-- run composer run dev
+- open the terminal 
+- run cd `didactic-spork`
+- run `composer install`
+- run `npm install --save-dev concurrently`
+- copy the `.env.example` to `.env`
+- run `php artisan migrate`
+- run `php artisan key:generate`
+- run `composer run dev`
 - enjoy
 
 # Disclaimer
