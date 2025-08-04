@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('dashboard')
-<div class="min-h-screen flex bg-gray-100">
+<div class="min-h-screen flex bg-white">
     <!-- Sidebar -->
     <x-sidebar />
 
