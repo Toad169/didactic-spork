@@ -8,7 +8,7 @@
 
 - clone this project git clone https://github.com/Toad169/larabruh.git
 - open the terminal 
-- run cd `didactic-spork`
+- run `cd didactic-spork`
 - run `composer install`
 - run `npm install --save-dev concurrently`
 - copy the `.env.example` to `.env`

@@ -21,6 +21,9 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/.qodo
+/.codacy
+/.specstory
 
 
 #Ignore vscode AI rules

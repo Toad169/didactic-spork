@@ -25,7 +25,8 @@ class StaffController extends Controller
         $users = User::all();
         $account = Auth::user()->account;
         $goals = Goals::all();
-        $budgets = Budget::all();            $reports = Reports::all();
+        $budgets = Budget::all();
+        $reports = Reports::all();
         $savings = Savings::all();
         $transactions = Transactions::all();
         $transfers = Transfers::all();
