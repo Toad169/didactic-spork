@@ -17,7 +17,7 @@ class StaffMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->staff()) {
+        if (!Auth::check() || !Auth::user()->isStaff()) {
             abort(403, 'Access denied. Staff privileges required.');
         }
 

@@ -17,7 +17,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->user()) {
+        if (!Auth::check() || !Auth::user()->isUser()) {
             abort(403, 'Access denied. User privileges required.');
         }
 

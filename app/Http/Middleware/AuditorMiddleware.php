@@ -17,7 +17,7 @@ class AuditorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->auditor()) {
+        if (!Auth::check() || !Auth::user()->isAuditor()) {
             abort(403, 'Access denied. Auditor privileges required.');
         }
 

@@ -124,4 +124,27 @@ class User extends Authenticatable
         return $this->hasMany(Contracts::class, 'approved_by');
     }
 
+    /**
+     * Check if the user is an admin
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin' || $this->account_type === 'admin';
+    }
+
+    public function isStaff(): bool
+    {
+        return $this->role === 'staff' || $this->account_type === 'staff';
+    }
+
+    public function isAuditor(): bool
+    {
+        return $this->role === 'auditor' || $this->account_type === 'auditor';
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === 'user' || $this->account_type === 'user';
+    }
+
 }

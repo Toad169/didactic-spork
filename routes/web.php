@@ -77,7 +77,7 @@ Route::middleware(['auth', 'staff'])
 
         Route::get('/dashboard/goals', [Staff::class, 'goals'])->name('goals');
 
-        Route::get('/dashboard/logs', [Staff::class, 'logs'])->name('logs');
+        // Route::get('/dashboard/logs', [Staff::class, 'logs'])->name('logs');
 
         Route::get('/dashboard/reports', [Staff::class, 'reports'])->name('reports');
 
@@ -91,7 +91,7 @@ Route::middleware(['auth', 'staff'])
 
         Route::get('/dashboard/transfers', [Staff::class, 'transfers'])->name('transfers');
 
-        Route::get('/dashboard/users', [Staff::class, 'users'])->name('users');
+        // Route::get('/dashboard/users', [Staff::class, 'users'])->name('users');
 
         // Additional named routes for missing blade links
         Route::get('/dashboard/reports/{id}', 'App\Http\Controllers\ReportController@show')->name('reports.show');
@@ -107,7 +107,7 @@ Route::middleware(['auth', 'auditor'])
 
         Route::get('/dashboard/goals', [Auditor::class, 'goals'])->name('goals');
 
-        Route::get('/dashboard/logs', [Auditor::class, 'logs'])->name('logs');
+        // Route::get('/dashboard/logs', [Auditor::class, 'logs'])->name('logs');
 
         Route::get('/dashboard/reports', [Auditor::class, 'reports'])->name('reports');
 
@@ -121,7 +121,7 @@ Route::middleware(['auth', 'auditor'])
 
         Route::get('/dashboard/transfers', [Auditor::class, 'transfers'])->name('transfers');
 
-        Route::get('/dashboard/users', [Auditor::class, 'users'])->name('users');
+        // Route::get('/dashboard/users', [Auditor::class, 'users'])->name('users');
 
         // Additional named routes for missing blade links
         Route::get('/dashboard/reports/{id}', 'App\Http\Controllers\ReportController@show')->name('reports.show');
@@ -133,13 +133,13 @@ Route::middleware(['auth', 'user'])
     ->group(function () {
         Route::get('/dashboard', [User::class, 'dashboard'])->name('dashboard');
 
-        Route::get('/dashboard/budget', [User::class, 'budget'])->name('budget');
+        // Route::get('/dashboard/budget', [User::class, 'budget'])->name('budget');
 
         Route::get('/dashboard/goals', [User::class, 'goals'])->name('goals');
 
-        Route::get('/dashboard/logs', [User::class, 'logs'])->name('logs');
+        // Route::get('/dashboard/logs', [User::class, 'logs'])->name('logs');
 
-        Route::get('/dashboard/reports', [User::class, 'reports'])->name('reports');
+        // Route::get('/dashboard/reports', [User::class, 'reports'])->name('reports');
 
         Route::get('/dashboard/savings', [User::class, 'savings'])->name('savings');
 
@@ -151,7 +151,7 @@ Route::middleware(['auth', 'user'])
 
         Route::get('/dashboard/transfers', [User::class, 'transfers'])->name('transfers');
 
-        Route::get('/dashboard/users', [User::class, 'users'])->name('users');
+        // Route::get('/dashboard/users', [User::class, 'users'])->name('users');
 
         // Additional named routes for missing blade links
         Route::get('/dashboard/reports/{id}', 'App\Http\Controllers\ReportController@show')->name('reports.show');
@@ -163,13 +163,13 @@ Route::middleware(['auth'])
     ->group(function () {
         Route::get('/dashboard', [User::class, 'dashboard'])->name('dashboard');
 
-        Route::get('/dashboard/budget', [User::class, 'budget'])->name('budget');
+        // Route::get('/dashboard/budget', [User::class, 'budget'])->name('budget');
 
         Route::get('/dashboard/goals', [User::class, 'goals'])->name('goals');
 
-        Route::get('/dashboard/logs', [User::class, 'logs'])->name('logs');
+        // Route::get('/dashboard/logs', [User::class, 'logs'])->name('logs');
 
-        Route::get('/dashboard/reports', [User::class, 'reports'])->name('reports');
+        // Route::get('/dashboard/reports', [User::class, 'reports'])->name('reports');
 
         Route::get('/dashboard/savings', [User::class, 'savings'])->name('savings');
 
@@ -181,7 +181,7 @@ Route::middleware(['auth'])
 
         Route::get('/dashboard/transfers', [User::class, 'transfers'])->name('transfers');
 
-        Route::get('/dashboard/users', [User::class, 'users'])->name('users');
+        // Route::get('/dashboard/users', [User::class, 'users'])->name('users');
 
         // Additional named routes for missing blade links
         Route::get('/dashboard/reports/{id}', 'App\Http\Controllers\ReportController@show')->name('reports.show');
