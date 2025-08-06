@@ -6,7 +6,7 @@
 
 # Steps
 
-- clone this project git clone https://github.com/Toad169/larabruh.git
+- clone this project `git clone https://github.com/Toad169/didactic-spork.git`
 - open the terminal 
 - run `cd didactic-spork`
 - run `composer install`
@@ -16,6 +16,19 @@
 - run `php artisan key:generate`
 - run `composer run dev`
 - enjoy
+
+or maybe just copypaste the command line below
+
+``` bash
+git clone https://github.com/Toad169/didactic-spork.git
+cd didactic-spork
+composer install
+npm install --save-dev concurrently
+cp .env.example .env
+php artisan migrate:fresh
+php artisan key:generate
+composer run dev
+```
 
 # Disclaimer
 
