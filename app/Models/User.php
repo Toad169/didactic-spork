@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Filament\Models\Contracts\FilamentUser;
 
 class User extends Authenticatable
 {
@@ -146,5 +147,33 @@ class User extends Authenticatable
     {
         return $this->role === 'user' || $this->account_type === 'user';
     }
+
+    public function canAccessFilament(): bool
+{
+    return $this->hasRole('admin');
+    return $this->hasRole('staff');
+    return $this->hasRole('auditor');
+}
+
+
+
+    // public function canAccessPage(string $page): bool
+    // {
+    //     return match ($page) {
+    //         'dashboard' => true,
+    //         'budget' => $this->isAdmin() || $this->isStaff(),
+    //         'goals' => $this->isAdmin() || $this->isStaff(),
+    //         'logs' => $this->isAdmin(),
+    //         'reports' => true,
+    //         'savings' => true,
+    //         'security' => true,
+    //         'settings' => true,
+    //         'transactions' => true,
+    //         'transfers' => $this->isAdmin() || $this->isStaff(),
+    //         'users' => $this->isAdmin(),
+    //         default => false,
+    //     };
+    // }
+
 
 }
