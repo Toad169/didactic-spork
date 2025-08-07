@@ -11,7 +11,7 @@ class Accounts extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'account_number', 'balance', 'status', 'opened_at', 'closed_at'
+        'user_id', 'account_number', 'account_type', 'balance', 'status', 'opened_at', 'closed_at'
     ];
 
     public function user() {

@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -32,6 +34,31 @@ class TransactionsResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('account_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction ID'),
+                TextColumn::make('type')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction Type'),
+                TextColumn::make('amount')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction Amount'),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction Description'),
+                TextColumn::make('status')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transaction Status'),
+                // TextColumn::make('created_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('Created At'),
             ])
             ->filters([
                 //

@@ -9,4 +9,9 @@
     <input type="text" name="name" value="{{ auth()->user()->name }}">
     <button type="submit">Save</button>
 </form>
+<ul>
+    <li>Email: {{ auth()->user()->email }}</li>
+    <li>Password: ••••••••</li>
+    <li><a href="{{ route('password.change') }}">Change Password</a></li>
+</ul>
 @endsection

@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -32,6 +34,32 @@ class LogsResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('user_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User ID'),
+                TextColumn::make('action')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Action'),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Description'),
+                TextColumn::make('ip_address')
+                    ->sortable()
+                    ->searchable()
+                    ->label('IP Address'),
+                // TextColumn::make('created_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('Created At'),
+                // TextColumn::make('updated_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('Updated At'),
             ])
             ->filters([
                 //

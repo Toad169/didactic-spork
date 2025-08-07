@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -32,6 +34,31 @@ class TransfersResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('sender_account_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Sender Account ID'),
+                TextColumn::make('receiver_account_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Receiver Account ID'),
+                TextColumn::make('amount')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Amount'),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Description'),
+                TextColumn::make('status')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Status'),
+                // TextColumn::make('created_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('Created At'),
             ])
             ->filters([
                 //
