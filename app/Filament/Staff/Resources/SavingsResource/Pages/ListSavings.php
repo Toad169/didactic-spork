@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Staff\Resources\SavingsResource\Pages;
+namespace App\Filament\Resources\SavingsResource\Pages;
 
-use App\Filament\Staff\Resources\SavingsResource;
+use App\Filament\Resources\SavingsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

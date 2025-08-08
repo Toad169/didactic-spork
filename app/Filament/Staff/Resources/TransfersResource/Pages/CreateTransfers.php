@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Staff\Resources\TransfersResource\Pages;
+namespace App\Filament\Resources\TransfersResource\Pages;
 
-use App\Filament\Staff\Resources\TransfersResource;
+use App\Filament\Resources\TransfersResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 

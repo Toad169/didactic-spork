@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Filament\Auditor\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Auditor\Resources\ContractsResource\Pages;
-use App\Filament\Auditor\Resources\ContractsResource\RelationManagers;
+use App\Filament\Resources\ContractsResource\Pages;
+use App\Filament\Resources\ContractsResource\RelationManagers;
 use App\Models\Contracts;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -24,6 +26,7 @@ class ContractsResource extends Resource
         return $form
             ->schema([
                 //
+
             ]);
     }
 
@@ -32,12 +35,39 @@ class ContractsResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('user_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User ID'),
+                TextColumn::make('type')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Contract Type'),
+                TextColumn::make('terms')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Contract Terms'),
+                TextColumn::make('signed_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->searchable()
+                    ->label('Signed At'),
+                TextColumn::make('expires_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->searchable()
+                    ->label('Expires At'),
+                TextColumn::make('approved_by')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Approved By'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Auditor\Resources\GoalsResource\Pages;
+namespace App\Filament\Resources\GoalsResource\Pages;
 
-use App\Filament\Auditor\Resources\GoalsResource;
+use App\Filament\Resources\GoalsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
