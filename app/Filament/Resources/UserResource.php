@@ -27,33 +27,45 @@ class UserResource extends Resource
             ->schema([
                 //
                 TextInput::make('name')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Name')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('email')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Email')
                     ->email()
                     ->required()
                     ->maxLength(255),
                 TextInput::make('phone_number')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Phone Number')
                     ->tel()
                     ->required()
                     ->maxLength(15),
                 TextInput::make('password')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Password')
                     ->password()
                     ->required()
                     ->minLength(8)
                     ->maxLength(255)
                     ->dehydrateStateUsing(fn ($state) => bcrypt($state)),
                 TextInput::make('role')
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Role')
                     ->required()
                     ->maxLength(50)
                     ->default('user'),
                 TextInput::make('account_type')
-                    ->options([
-                        'wadiah' => 'Wadiah',
-                        'qardh' => 'Qardh',
-                        'murabaha' => 'Murabaha',
-                        'ijarah' => 'Ijarah',
-                    ])
+                    ->sortable()
+                    ->searchable()
+                    ->label('User Type')
             ]);
     }
 

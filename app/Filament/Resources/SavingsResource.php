@@ -55,10 +55,10 @@ class SavingsResource extends Resource
                     ->searchable()
                     ->label('Savings Status'),
                 TextColumn::make('is_locked')
-                    ->boolean()
                     ->sortable()
                     ->searchable()
-                    ->label('Is Locked'),
+                    ->label('Is Locked')
+                    ->formatStateUsing(fn ($state) => $state ? 'Yes' : 'No'),
                 TextColumn::make('deadline')
                     ->dateTime()
                     ->sortable()
