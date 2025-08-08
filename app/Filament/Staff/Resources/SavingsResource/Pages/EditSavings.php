@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\SavingsResource\Pages;
+namespace App\Filament\Staff\Resources\SavingsResource\Pages;
 
-use App\Filament\Resources\SavingsResource;
+use App\Filament\Staff\Resources\SavingsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

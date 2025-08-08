@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Auditor\Resources;
 
-use App\Filament\Resources\GoalsResource\Pages;
-use App\Filament\Resources\GoalsResource\RelationManagers;
+use App\Filament\Auditor\Resources\GoalsResource\Pages;
+use App\Filament\Auditor\Resources\GoalsResource\RelationManagers;
 use App\Models\Goals;
 use Filament\Forms;
 use Filament\Forms\Form;

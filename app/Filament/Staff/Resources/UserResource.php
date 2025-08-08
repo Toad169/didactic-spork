@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Staff\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
+use App\Filament\Staff\Resources\UserResource\Pages;
+use App\Filament\Staff\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -119,6 +119,7 @@ class UserResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

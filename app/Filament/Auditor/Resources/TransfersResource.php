@@ -2,8 +2,8 @@
 
 namespace App\Filament\Auditor\Resources;
 
-use App\Filament\Auditor\Resources\AccountsResource\Pages;
-use App\Filament\Auditor\Resources\AccountsResource\RelationManagers;
+use App\Filament\Auditor\Resources\TransfersResource\Pages;
+use App\Filament\Auditor\Resources\TransfersResource\RelationManagers;
 use App\Models\Transfers;
 use Filament\Forms;
 use Filament\Forms\Form;

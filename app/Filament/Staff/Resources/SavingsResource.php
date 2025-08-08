@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Staff\Resources;
 
-use App\Filament\Resources\SavingsResource\Pages;
-use App\Filament\Resources\SavingsResource\RelationManagers;
+use App\Filament\Staff\Resources\SavingsResource\Pages;
+use App\Filament\Staff\Resources\SavingsResource\RelationManagers;
 use App\Models\Savings;
 use Filament\Forms;
 use Filament\Forms\Form;

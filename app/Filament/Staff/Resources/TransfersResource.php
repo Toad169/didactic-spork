@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Staff\Resources;
 
-use App\Filament\Resources\TransfersResource\Pages;
-use App\Filament\Resources\TransfersResource\RelationManagers;
+use App\Filament\Staff\Resources\TransfersResource\Pages;
+use App\Filament\Staff\Resources\TransfersResource\RelationManagers;
 use App\Models\Transfers;
 use Filament\Forms;
 use Filament\Forms\Form;
