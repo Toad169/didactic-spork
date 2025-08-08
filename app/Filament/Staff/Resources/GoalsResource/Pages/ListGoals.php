@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Staff\Resources\GoalsResource\Pages;
+namespace App\Filament\Resources\GoalsResource\Pages;
 
-use App\Filament\Staff\Resources\GoalsResource;
+use App\Filament\Resources\GoalsResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Filament\Staff\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Staff\Resources\TransfersResource\Pages;
-use App\Filament\Staff\Resources\TransfersResource\RelationManagers;
+use App\Filament\Resources\TransfersResource\Pages;
+use App\Filament\Resources\TransfersResource\RelationManagers;
 use App\Models\Transfers;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -32,12 +34,38 @@ class TransfersResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('sender_account_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Sender Account ID'),
+                TextColumn::make('receiver_account_id')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Receiver Account ID'),
+                TextColumn::make('amount')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Amount'),
+                TextColumn::make('description')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Description'),
+                TextColumn::make('status')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Transfer Status'),
+                // TextColumn::make('created_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->searchable()
+                //     ->label('Created At'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
