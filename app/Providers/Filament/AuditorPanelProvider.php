@@ -52,6 +52,7 @@ class AuditorPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                'role:auditor',
             ]);
     }
 }

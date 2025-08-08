@@ -52,6 +52,7 @@ class StaffPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                'role:staff',
             ]);
     }
 }
