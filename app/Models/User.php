@@ -95,15 +95,15 @@ class User extends Authenticatable
         return $this->hasMany(Logs::class);
     }
 
-    public function reports()
-    {
-        return $this->hasMany(Reports::class);
-    }
+    // public function reports()
+    // {
+    //     return $this->hasMany(Reports::class);
+    // }
 
-    public function generatedReports()
-    {
-        return $this->hasMany(Reports::class, 'generated_by');
-    }
+    // public function generatedReports()
+    // {
+    //     return $this->hasMany(Reports::class, 'generated_by');
+    // }
 
     public function savings()
     {
