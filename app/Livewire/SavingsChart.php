@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Savings;
+
 use Filament\Widgets\ChartWidget;
 
 class SavingsChart extends ChartWidget

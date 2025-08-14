@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Budget;
+
 use Filament\Widgets\ChartWidget;
 
 class BudgetChart extends ChartWidget

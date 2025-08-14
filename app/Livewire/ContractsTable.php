@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Contracts;
+
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;

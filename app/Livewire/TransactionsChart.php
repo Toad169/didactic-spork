@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Transactions;
+
 use Filament\Widgets\ChartWidget;
 
 class TransactionsChart extends ChartWidget
