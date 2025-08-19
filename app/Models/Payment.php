@@ -5,16 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Logs extends Model
+class Payment extends Model
 {
-    /** @use HasFactory<\Database\Factories\LogsFactory> */
+    //
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'action', 'description', 'ip_address', 'user_agent'
+        'user_id',
+        'type',
+        'provider',
+        'provider_id',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

@@ -18,6 +18,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+use Andreia\FilamentNordTheme\FilamentNordThemePlugin;
+
 class StaffPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -51,7 +53,8 @@ class StaffPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                Authenticate::class,
-            ]);
+                Authenticate::class, 'role => staff',
+            ])
+            ->plugin(FilamentNordThemePlugin::make());
     }
 }

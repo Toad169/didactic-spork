@@ -25,7 +25,7 @@ class User extends Authenticatable
         'phone_number',
         'password',
         'role',
-        'account_type',
+        // 'account_type',
 
     ];
 
@@ -65,95 +65,47 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function users()
+    public function profile()
     {
-        return ;
+        return $this->hasOne(Profile::class);
     }
 
-    public function account()
+    public function accounts()
     {
-        return $this->hasOne(Accounts::class);
+        return $this->hasMany(Account::class);
     }
 
-    public function budgets()
-    {
-        return $this->hasMany(Budget::class);
-    }
-
-    public function contracts()
-    {
-        return $this->hasMany(Contracts::class);
-    }
-
-    public function goals()
-    {
-        return $this->hasMany(Goals::class);
-    }
-
-    public function logs()
-    {
-        return $this->hasMany(Logs::class);
-    }
-
-    // public function reports()
+    // public function creditCards()
     // {
-    //     return $this->hasMany(Reports::class);
+    //     return $this->hasMany(Payment::class);
     // }
 
-    // public function generatedReports()
-    // {
-    //     return $this->hasMany(Reports::class, 'generated_by');
-    // }
 
-    public function savings()
-    {
-        return $this->hasManyThrough(Savings::class, Accounts::class);
-    }
-
-    public function transactions()
-    {
-        return $this->hasManyThrough(Transactions::class, Accounts::class);
-    }
-
-    public function performedTransactions()
-    {
-        return $this->hasMany(Transactions::class, 'performed_by');
-    }
-
-    public function approvedContracts()
-    {
-        return $this->hasMany(Contracts::class, 'approved_by');
-    }
-
-    /**
-     * Check if the user is an admin
-     */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin' || $this->account_type === 'admin';
+        return $this->role === 'admin';
     }
 
     public function isStaff(): bool
     {
-        return $this->role === 'staff' || $this->account_type === 'staff';
+        return $this->role === 'staff';
     }
 
     public function isAuditor(): bool
     {
-        return $this->role === 'auditor' || $this->account_type === 'auditor';
+        return $this->role === 'auditor';
     }
-
     public function isUser(): bool
     {
-        return $this->role === 'user' || $this->account_type === 'user';
+        return $this->role === 'user';
     }
 
-    public function canAccessFilament(): bool
-{
-    return $this->hasRole('admin');
-    return $this->hasRole('staff');
-    return $this->hasRole('auditor');
-}
+//     public function canAccessFilament(): bool
+// {
+//     return $this->hasRole('admin');
+//     return $this->hasRole('staff');
+//     return $this->hasRole('auditor');
+// }
 
 
 
