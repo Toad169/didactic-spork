@@ -44,6 +44,8 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
             $table->string('address')->nullable();
+            $table->date('date_of_birth')->nullable()
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -53,8 +55,9 @@ return new class extends Migration
             $table->string('type');
             $table->string('provider');
             $table->string('provider_id')->unique();
-            // $table->string('last_four', 4);
-            // $table->boolean('is_default')->default(false);
+            $table->string('provider_api')->unique();
+            $table->string('last_four', 4);
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
 
@@ -87,11 +90,15 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contract_id')->nullable()->constrained()->onDelete('set null'); // Link to contract
+            $table->string('reference_number')->unique(); // Transaction reference
             $table->foreignId('related_transaction_id')->nullable()->constrained('transactions')->onDelete('set null');
             $table->enum('transaction_type', ['deposit', 'withdrawal', 'transfer'])->default('deposit');
             $table->decimal('amount', 20, 2);
+            $table->decimal('balance_after', 20, 2)->nullable(); // Balance after transaction
             $table->string('description')->nullable();
             $table->enum('status', ['pending', 'completed', 'failed', 'cancelled'])->default('pending');
+            $table->json('metadata')->nullable(); // Additional transaction data
             $table->timestamp('transaction_date')->useCurrent();
             $table->timestamps();
         });
@@ -103,6 +110,10 @@ return new class extends Migration
             $table->enum('contract_type', ['murabaha', 'mudarabah', 'ijarah', 'musharakah'])->default('murabaha');
             $table->string('title');
             $table->decimal('profit_rate', 5, 2)->default(0.00);
+            $table->decimal('principal_amount', 20, 2)->nullable(); // For murabaha/financing
+            $table->decimal('total_amount', 20, 2)->nullable(); // Total including profit
+            $table->integer('term_months')->nullable(); // Contract duration
+            $table->json('terms_conditions')->nullable(); // Store contract terms
             $table->timestamp('signed_at')->nullable();
             $table->timestamp('expired_at')->nullable();
             $table->text('description')->nullable();
@@ -110,7 +121,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('profit_sharings', function (Blueprint $table) {
+        Schema::create('profit_distributions', function (Blueprint $table) {
             $table->id();
             // $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
@@ -130,6 +141,47 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('zakat_calculations', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->decimal('nisab_threshold', 20, 2);
+            $table->decimal('zakatable_amount', 20, 2);
+            $table->decimal('zakat_due', 20, 2);
+            $table->year('calculation_year');
+            $table->boolean('paid')->default(false);
+            $table->timestamp('paid_at')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('audit_logs', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('model_type'); // User, Transaction, etc.
+            $table->unsignedBigInteger('model_id');
+            $table->enum('action', ['create', 'update', 'delete'])->default('create'); // created, updated, deleted
+            $table->json('old_values')->nullable();
+            $table->json('new_values')->nullable();
+            $table->string('ip_address')->nullable();
+            $table->timestamps();
+
+            $table->index(['model_type', 'model_id']);
+        });
+
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->index(['user_id', 'status']);
+        });
+
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->index(['account_id', 'transaction_date']);
+            $table->index(['status', 'transaction_date']);
+        });
+
+        Schema::table('contracts', function (Blueprint $table) {
+            $table->index(['contract_type', 'status']);
+        });
+
     }
 
     /**
@@ -137,16 +189,33 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
-        Schema::dropIfExists('profiles');
-        Schema::dropIfExists('payment_methods');
-        Schema::dropIfExists('accounts');
-        Schema::dropIfExists('savings');
-        Schema::dropIfExists('transactions');
-        Schema::dropIfExists('contracts');
-        Schema::dropIfExists('profit_sharings');
+        // Drop in reverse dependency order
         Schema::dropIfExists('fees');
+        Schema::dropIfExists('profit_sharings');
+        Schema::dropIfExists('contracts');
+        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('savings');
+        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('payment_methods');
+        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('audit_logs');
+        Schema::dropIfExists('zakat_calculations');
+
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->dropIndex(['user_id', 'status']);
+        });
+
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->dropIndex(['account_id', 'transaction_date']);
+            $table->dropIndex(['status', 'transaction_date']);
+        });
+
+        Schema::table('contracts', function (Blueprint $table) {
+            $table->dropIndex(['contract_type', 'status']);
+        });
+
     }
 };
