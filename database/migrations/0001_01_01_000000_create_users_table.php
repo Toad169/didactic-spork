@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
             $table->string('address')->nullable();
-            $table->date('date_of_birth')->nullable()
+            $table->date('date_of_birth')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
