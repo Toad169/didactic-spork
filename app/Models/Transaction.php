@@ -19,4 +19,9 @@ class Transaction extends Model
         'status',
         'transaction_date',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

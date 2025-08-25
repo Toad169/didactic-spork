@@ -17,4 +17,9 @@ class Fee extends Model
         'applied_at'
         // 'description',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

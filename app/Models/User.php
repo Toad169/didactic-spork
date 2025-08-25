@@ -65,15 +65,15 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
+    // public function profile()
+    // {
+    //     return $this->hasOne(Profile::class);
+    // }
 
-    public function accounts()
-    {
-        return $this->hasMany(Account::class);
-    }
+    // public function accounts()
+    // {
+    //     return $this->hasMany(Account::class);
+    // }
 
     // public function creditCards()
     // {

@@ -17,4 +17,14 @@ class ProfitSharing extends Model
         'profit_amount',
         'distributed_at',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
 }

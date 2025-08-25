@@ -20,4 +20,9 @@ class Contract extends Model
         'expired_at',
         'status',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }
