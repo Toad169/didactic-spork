@@ -24,7 +24,7 @@ yarn-error.log
 /.qodo
 /.codacy
 /.specstory
-
+Archive.zip
 
 #Ignore vscode AI rules
 .github\copilot-instructions.md
