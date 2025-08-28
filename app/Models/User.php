@@ -70,6 +70,17 @@ class User extends Authenticatable
 
 
 
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_STAFF = 'staff';
+    public const ROLE_USER = 'user';
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
+    }
+
+
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
@@ -121,16 +132,6 @@ class User extends Authenticatable
     }
 
 
-    
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_STAFF = 'staff';
-    public const ROLE_AUDITOR = 'auditor';
-    public const ROLE_USER = 'user';
-
-    public function hasRole(string $role): bool
-    {
-        return $this->role === $role;
-    }
 
 
 }
