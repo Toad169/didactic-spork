@@ -25,4 +25,14 @@ class Contract extends Model
     {
         return $this->belongsTo(Account::class);
     }
+
+    public function profitSharings()
+    {
+        return $this->hasMany(ProfitSharing::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

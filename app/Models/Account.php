@@ -22,4 +22,34 @@ class Account extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
+
+    public function profitSharings()
+    {
+        return $this->hasMany(ProfitSharing::class);
+    }
+
+    public function savings()
+    {
+        return $this->hasMany(Saving::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function zakatCalculation()
+    {
+        return $this->hasMany(ZakatCalculation::class);
+    }
 }

@@ -12,7 +12,7 @@ class ZakatCalculation extends Model
 
     protected $fillable = [
         'user_id',
-        'account_id'
+        'account_id',
         'nisab_threshhold',
         'zakatable_amount',
         'zakat_due',

@@ -65,20 +65,38 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
 
-    // public function accounts()
-    // {
-    //     return $this->hasMany(Account::class);
-    // }
 
-    // public function creditCards()
-    // {
-    //     return $this->hasMany(Payment::class);
-    // }
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function auditLogs()
+    {
+        return $this->hasMany(AuditLogs::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function zakatCalculations()
+    {
+        return $this->hasMany(ZakatCalculation::class);
+    }
+
 
 
     public function isAdmin(): bool

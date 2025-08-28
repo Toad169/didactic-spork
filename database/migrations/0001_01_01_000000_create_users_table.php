@@ -89,6 +89,7 @@ return new class extends Migration
 
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->foreignId('contract_id')->nullable()->constrained()->onDelete('set null'); // Link to contract
             $table->string('reference_number')->unique(); // Transaction reference
