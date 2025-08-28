@@ -121,24 +121,16 @@ class User extends Authenticatable
     }
 
 
+    
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_STAFF = 'staff';
+    public const ROLE_AUDITOR = 'auditor';
+    public const ROLE_USER = 'user';
 
-    public function isAdmin(): bool
+    public function hasRole(string $role): bool
     {
-        return $this->role === 'admin';
+        return $this->role === $role;
     }
 
-    public function isStaff(): bool
-    {
-        return $this->role === 'staff';
-    }
-
-    public function isAuditor(): bool
-    {
-        return $this->role === 'auditor';
-    }
-    public function isUser(): bool
-    {
-        return $this->role === 'user';
-    }
 
 }
