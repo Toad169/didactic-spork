@@ -11,19 +11,33 @@ class Contract extends Model
     use HasFactory;
 
     protected $fillable = [
-        'account_id',
         'contract_number',
         'contract_type',
         'title',
-        'profit_rate',
+    ];
+
+    protected $guarded = [
+        'user_id',
+        'account_id',
+        'status',
         'signed_at',
         'expired_at',
-        'status',
     ];
+
+    protected $hidden = [
+        'user_id',
+        'account_id', // optional, only if you don't want APIs to show it
+    ];
+
 
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function profitSharings()

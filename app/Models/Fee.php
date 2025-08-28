@@ -11,15 +11,28 @@ class Fee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'account_id',
         'fee_type',
         'amount',
-        'applied_at'
-        // 'description',
+    ];
+
+    protected $guarded = [
+        'user_id',
+        'account_id',
+        'applied_at',
+    ];
+
+    protected $guarded = [
+        'user_id',
+        'account_id';
     ];
 
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

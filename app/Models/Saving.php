@@ -11,15 +11,29 @@ class Saving extends Model
     use HasFactory;
 
     protected $fillable = [
-        'account_id',
-        'savings_number',
-        'savings_type',
-        'title',
-        'current_balance',
-        'target_balance',
-        'target_date',
-        'status',
+        'savings_number', 
+        'savings_type', 
+        'title', 
+        'target_balance', 
+        'target_date'
     ];
+    
+    protected $guarded = [
+        'user_id',
+        'account_id', 
+        'current_balance', 
+        'status'
+    ];
+    
+    protected $hidden = [
+        'user_id',
+        'account_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function account()
     {

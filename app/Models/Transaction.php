@@ -11,16 +11,28 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'transaction_type',
+        'amount',
+        'description',
+        'transaction_date',
+    ];
+
+    protected $guarded = [
         'user_id',
         'account_id',
         'contract_id',
         'related_transaction_id',
-        'transaction_type',
-        'amount',
-        'description',
         'status',
-        'transaction_date',
     ];
+
+    protected $hidden = [
+        'user_id',
+        'account_id',
+        'contract_id',
+        'related_transaction_id',
+    ];
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

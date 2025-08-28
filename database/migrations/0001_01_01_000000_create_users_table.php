@@ -75,6 +75,7 @@ return new class extends Migration
 
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->string('savings_number')->unique();
             $table->enum('savings_type', ['wadiah', 'mudarabah'])->default('wadiah');
@@ -106,6 +107,7 @@ return new class extends Migration
 
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->string('contract_number')->unique();
             $table->enum('contract_type', ['murabaha', 'mudarabah', 'ijarah', 'musharakah'])->default('murabaha');
@@ -124,7 +126,7 @@ return new class extends Migration
 
         Schema::create('profit_distributions', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->foreignId('contract_id')->constrained()->onDelete('cascade');
             $table->decimal('profit_amount', 20, 2)->default(0.00);
@@ -135,6 +137,7 @@ return new class extends Migration
 
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->enum('fee_type', ['maintenance', 'transaction', 'penalty'])->default('maintenance');
             $table->decimal('amount', 20, 2);

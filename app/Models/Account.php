@@ -11,12 +11,20 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'account_number',
-        'account_type',
-        'title',
-        'status',
+    'account_number',
+    'account_type',
+    'title',
     ];
+
+    protected $guarded = [
+    'user_id',
+    'status',
+    ];
+
+    protected $hidden = [
+    'user_id', // optional if you don't want it exposed
+    ];
+
 
     public function user()
     {

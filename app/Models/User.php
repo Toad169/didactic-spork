@@ -24,9 +24,12 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'password',
-        'role',
         // 'account_type',
 
+    ];
+
+    protected $guarded = [
+        'role',
     ];
 
     /**
@@ -97,6 +100,26 @@ class User extends Authenticatable
         return $this->hasMany(ZakatCalculation::class);
     }
 
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
+
+    public function profitSharings()
+    {
+        return $this->hasMany(ProfitSharing::class);
+    }
+
+    public function savings()
+    {
+        return $this->hasMany(Saving::class);
+    }
+
 
 
     public function isAdmin(): bool
@@ -117,33 +140,5 @@ class User extends Authenticatable
     {
         return $this->role === 'user';
     }
-
-//     public function canAccessFilament(): bool
-// {
-//     return $this->hasRole('admin');
-//     return $this->hasRole('staff');
-//     return $this->hasRole('auditor');
-// }
-
-
-
-    // public function canAccessPage(string $page): bool
-    // {
-    //     return match ($page) {
-    //         'dashboard' => true,
-    //         'budget' => $this->isAdmin() || $this->isStaff(),
-    //         'goals' => $this->isAdmin() || $this->isStaff(),
-    //         'logs' => $this->isAdmin(),
-    //         'reports' => true,
-    //         'savings' => true,
-    //         'security' => true,
-    //         'settings' => true,
-    //         'transactions' => true,
-    //         'transfers' => $this->isAdmin() || $this->isStaff(),
-    //         'users' => $this->isAdmin(),
-    //         default => false,
-    //     };
-    // }
-
 
 }

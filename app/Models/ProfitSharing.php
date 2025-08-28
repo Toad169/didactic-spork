@@ -11,12 +11,26 @@ class ProfitSharing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'account_id',
-        'contract_id',
-        // 'profit_rate',
         'profit_amount',
         'distributed_at',
     ];
+
+    protected $guarded = [
+        'user_id',
+        'account_id',
+        'contract_id',
+    ];
+
+    protected $hidden = [
+        'user_id',
+        'account_id',
+        'contract_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function account()
     {

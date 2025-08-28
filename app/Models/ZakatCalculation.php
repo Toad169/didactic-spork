@@ -11,14 +11,22 @@ class ZakatCalculation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'account_id',
         'nisab_threshhold',
         'zakatable_amount',
         'zakat_due',
         'calculation_year',
         'paid',
         'paid_at',
+    ];
+
+    protected $guarded = [
+        'user_id',
+        'account_id',
+    ];
+
+    protected $hidden = [
+        'user_id',
+        'account_id',
     ];
 
     public function user()

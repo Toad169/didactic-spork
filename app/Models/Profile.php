@@ -11,10 +11,17 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'avatar',
         'bio',
         'address',
+    ];
+
+    protected $guarded = [
+        'user_id',
+    ];
+
+    protected $hidden = [
+        'user_id',
     ];
 
     public function user()

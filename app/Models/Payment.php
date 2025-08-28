@@ -11,11 +11,19 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'type',
         'provider',
+    ];
+
+    protected $guarded = [
+        'user_id',
         'provider_id',
     ];
+
+    protected $hidden = [
+        'provider_id',
+    ];
+
 
     public function user()
     {
