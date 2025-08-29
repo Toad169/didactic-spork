@@ -21,9 +21,9 @@ class Fee extends Model
         'applied_at',
     ];
 
-    protected $guarded = [
+    protected $hidden = [
         'user_id',
-        'account_id';
+        'account_id',
     ];
 
     public function account()
