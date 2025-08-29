@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\Fee;
 
-class UserService
+class Apply
 {
     /**
      * Create a new class instance.

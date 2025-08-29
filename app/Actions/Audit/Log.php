@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\Audit;
 
-class AuditService
+class Log
 {
     /**
      * Create a new class instance.

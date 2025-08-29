@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\Transaction;
 
-class ContractService
+class Cancel
 {
     /**
      * Create a new class instance.

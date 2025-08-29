@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\User;
 
-class AccountService
+class Delete
 {
     /**
      * Create a new class instance.

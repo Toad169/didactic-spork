@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Account;
+namespace App\Actions\Profile;
 
-class CreateAccountAction
+class Update
 {
     /**
      * Create a new class instance.

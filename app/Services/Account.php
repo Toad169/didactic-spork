@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\User;
+namespace App\Services;
 
-class CreateUserAction
+class Account
 {
     /**
      * Create a new class instance.

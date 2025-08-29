@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Contract;
+namespace App\Services;
 
-class CreateContractAction
+class Contract
 {
     /**
      * Create a new class instance.

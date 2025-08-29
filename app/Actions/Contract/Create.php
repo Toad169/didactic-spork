@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\User;
+namespace App\Actions\Contract;
 
-class DeleteUserAction
+class Create
 {
     /**
      * Create a new class instance.

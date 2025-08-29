@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Contract;
+namespace App\Services;
 
-class TerminateContractAction
+class User
 {
     /**
      * Create a new class instance.

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\Account;
 
-class PaymentService
+class Create
 {
     /**
      * Create a new class instance.

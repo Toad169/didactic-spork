@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class TransactionService
+class Zakat
 {
     /**
      * Create a new class instance.

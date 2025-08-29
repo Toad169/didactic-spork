@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class FeeService
+class AuditLog
 {
     /**
      * Create a new class instance.

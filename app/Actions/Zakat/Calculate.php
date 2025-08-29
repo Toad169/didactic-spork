@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Account;
+namespace App\Actions\Zakat;
 
-class CloseAccountAction
+class Calculate
 {
     /**
      * Create a new class instance.

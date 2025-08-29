@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions\Transaction;
 
-class ZakatService
+class Create
 {
     /**
      * Create a new class instance.

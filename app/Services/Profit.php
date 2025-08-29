@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Profile;
+namespace App\Services;
 
-class UpdateProfileAction
+class Profit
 {
     /**
      * Create a new class instance.

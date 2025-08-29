@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\User;
+namespace App\Actions\Profit;
 
-class UpdateUserAction
+class Distribute
 {
     /**
      * Create a new class instance.
