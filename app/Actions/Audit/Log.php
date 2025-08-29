@@ -2,6 +2,8 @@
 
 namespace App\Actions\Audit;
 
+use App\Models\AuditLogs;
+
 class Log
 {
     /**

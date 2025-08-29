@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\ZakatCalculation;
+
 class Zakat
 {
     /**

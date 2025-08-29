@@ -2,6 +2,8 @@
 
 namespace App\Actions\Contract;
 
+use App\Models\Contract;
+
 class Create
 {
     /**

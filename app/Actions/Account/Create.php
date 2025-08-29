@@ -2,6 +2,8 @@
 
 namespace App\Actions\Account;
 
+use App\Models\Account;
+
 class Create
 {
     /**

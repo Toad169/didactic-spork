@@ -2,6 +2,8 @@
 
 namespace App\Actions\Profit;
 
+use App\Models\ProfitSharing;
+
 class Distribute
 {
     /**

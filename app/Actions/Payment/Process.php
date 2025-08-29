@@ -2,6 +2,8 @@
 
 namespace App\Actions\Payment;
 
+use App\Models\Payment;
+
 class Process
 {
     /**

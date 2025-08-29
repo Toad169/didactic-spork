@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use App\Models\Profile;
+
 class User
 {
     /**

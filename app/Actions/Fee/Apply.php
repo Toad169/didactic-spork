@@ -2,6 +2,8 @@
 
 namespace App\Actions\Fee;
 
+use App\Models\Fee;
+
 class Apply
 {
     /**

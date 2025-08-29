@@ -2,6 +2,8 @@
 
 namespace App\Actions\Transaction;
 
+use App\Models\Transaction;
+
 class Cancel
 {
     /**

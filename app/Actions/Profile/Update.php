@@ -2,6 +2,8 @@
 
 namespace App\Actions\Profile;
 
+use App\Models\Profile;
+
 class Update
 {
     /**

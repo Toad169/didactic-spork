@@ -2,6 +2,8 @@
 
 namespace App\Actions\Zakat;
 
+use App\Models\ZakatCalculation;
+
 class Distribute
 {
     /**
