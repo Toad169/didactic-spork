@@ -40,7 +40,7 @@ return new class extends Migration
 
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('avatar')->nullable();
             $table->string('bio')->nullable();
             $table->string('address')->nullable();
@@ -51,7 +51,7 @@ return new class extends Migration
 
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('type');
             $table->string('provider');
             $table->string('provider_id')->unique();
@@ -63,10 +63,8 @@ return new class extends Migration
 
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('account_number')->unique();
-            // $table->string('bank_name');
-            // $table->string('bank_code');
             $table->enum('account_type', ['savings', 'current', 'fixed'])->default('savings');
             $table->string('title')->nullable();
             $table->enum('status', ['active', 'inactive', 'closed'])->default('active');
@@ -75,8 +73,8 @@ return new class extends Migration
 
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
             $table->string('savings_number')->unique();
             $table->enum('savings_type', ['wadiah', 'mudarabah'])->default('wadiah');
             $table->string('title')->nullable();
@@ -90,9 +88,9 @@ return new class extends Migration
 
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
-            $table->foreignId('contract_id')->nullable()->constrained()->onDelete('set null'); // Link to contract
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
+            $table->foreignId('contract_id')->nullable()->constrained('contracts')->onDelete('set null'); // Link to contract
             $table->string('reference_number')->unique(); // Transaction reference
             $table->foreignId('related_transaction_id')->nullable()->constrained('transactions')->onDelete('set null');
             $table->enum('transaction_type', ['deposit', 'withdrawal', 'transfer'])->default('deposit');
@@ -107,8 +105,8 @@ return new class extends Migration
 
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
             $table->string('contract_number')->unique();
             $table->enum('contract_type', ['murabaha', 'mudarabah', 'ijarah', 'musharakah'])->default('murabaha');
             $table->string('title');
@@ -126,9 +124,9 @@ return new class extends Migration
 
         Schema::create('profit_distributions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
-            $table->foreignId('contract_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
+            $table->foreignId('contract_id')->constrained('contracts')->onDelete('cascade');
             $table->decimal('profit_amount', 20, 2)->default(0.00);
             $table->timestamp('distributed_at')->useCurrent();
             $table->text('description')->nullable();
@@ -137,8 +135,8 @@ return new class extends Migration
 
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
             $table->enum('fee_type', ['maintenance', 'transaction', 'penalty'])->default('maintenance');
             $table->decimal('amount', 20, 2);
             $table->timestamp('applied_at')->useCurrent();
@@ -146,13 +144,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('zakat_calculations', function (Blueprint $table) {
+
+        Schema::create('zakat', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('account_id')->constrained()->onDelete('cascade');
-            $table->decimal('nisab_threshold', 20, 2);
-            $table->decimal('zakatable_amount', 20, 2);
-            $table->decimal('zakat_due', 20, 2);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade');
+            $table->decimal('income', 20, 2)->default(0.00);
+            $table->decimal('savings', 20, 2)->default(0.00);
+            $table->decimal('gold', 20, 2)->default(0.00);
+            $table->decimal('silver', 20, 2)->default(0.00);
+            $table->decimal('assets', 20, 2)->default(0.00);
+            $table->decimal('debts', 20, 2)->default(0.00);
+            $table->decimal('total_wealth', 20, 2)->default(0.00);
+            $table->decimal('nisab_threshold', 20, 2)->default(0.00);
+            $table->decimal('zakatable_amount', 20, 2)->default(0.00);
+            $table->decimal('zakat_due', 20, 2)->default(0.00);
             $table->year('calculation_year');
             $table->boolean('paid')->default(false);
             $table->timestamp('paid_at')->nullable();
@@ -161,7 +167,7 @@ return new class extends Migration
 
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('model_type'); // User, Transaction, etc.
             $table->unsignedBigInteger('model_id');
             $table->enum('action', ['create', 'update', 'delete'])->default('create'); // created, updated, deleted
@@ -206,7 +212,7 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
         Schema::dropIfExists('audit_logs');
-        Schema::dropIfExists('zakat_calculations');
+        Schema::dropIfExists('zakat');
 
         Schema::table('accounts', function (Blueprint $table) {
             $table->dropIndex(['user_id', 'status']);

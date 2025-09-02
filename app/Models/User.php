@@ -64,7 +64,7 @@ class User extends Authenticatable
         return Str::of($this->name)
             ->explode(' ')
             ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
 
@@ -98,7 +98,7 @@ class User extends Authenticatable
 
     public function auditLogs()
     {
-        return $this->hasMany(AuditLogs::class);
+        return $this->hasMany(AuditLog::class);
     }
 
     public function transactions()
@@ -106,9 +106,9 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
-    public function zakatCalculations()
+    public function zakat()
     {
-        return $this->hasMany(ZakatCalculation::class);
+        return $this->hasMany(Zakat::class);
     }
 
     public function contracts()
@@ -130,8 +130,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Saving::class);
     }
-
-
-
-
 }

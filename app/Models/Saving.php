@@ -11,20 +11,20 @@ class Saving extends Model
     use HasFactory;
 
     protected $fillable = [
-        'savings_number', 
-        'savings_type', 
-        'title', 
-        'target_balance', 
+        'savings_number',
+        'savings_type',
+        'title',
+        'target_balance',
         'target_date'
     ];
-    
+
     protected $guarded = [
         'user_id',
-        'account_id', 
-        'current_balance', 
+        'account_id',
+        'current_balance',
         'status'
     ];
-    
+
     protected $hidden = [
         'user_id',
         'account_id'

@@ -56,8 +56,8 @@ class Account extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public function zakatCalculation()
+    public function zakat()
     {
-        return $this->hasMany(ZakatCalculation::class);
+        return $this->hasMany(Zakat::class);
     }
 }
