@@ -41,9 +41,9 @@ class Account extends Model
         return $this->hasMany(Fee::class);
     }
 
-    public function profitSharings()
+    public function profit()
     {
-        return $this->hasMany(ProfitSharing::class);
+        return $this->hasMany(ProfitDistribution::class);
     }
 
     public function savings()

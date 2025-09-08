@@ -40,9 +40,9 @@ class Contract extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function profitSharings()
+    public function profit()
     {
-        return $this->hasMany(ProfitSharing::class);
+        return $this->hasMany(ProfitDistribution::class);
     }
 
     public function transactions()
