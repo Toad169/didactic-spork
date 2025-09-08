@@ -3,16 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\Auth\SignInController;
-use App\Http\Controllers\Auth\LogInController;
+use App\Http\Controllers\Auth\SignInController as SignIn;
+use App\Http\Controllers\Auth\LogInController as LogIn;
 use App\Http\Controllers\UserController as User;
 use App\Http\Controllers\Controller;
 
 Route::view('/',  view: 'index');
 
-Route::post('/login', [App\Http\Controllers\Auth\LogInController::class, 'login'])->name('login.post');
-Route::post('/signin', [App\Http\Controllers\Auth\SignInController::class, 'signin'])->name('signin.post');
-Route::post('/logout', [App\Http\Controllers\Auth\LogInController::class, 'logout'])->name('logout');
+Route::post('/login', [LogIn::class, 'login'])->name('login.post');
+Route::post('/signin', [SignIn::class, 'signin'])->name('signin.post');
+Route::post('/logout', [LogIn::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])
     ->group(function () {

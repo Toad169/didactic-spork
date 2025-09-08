@@ -77,4 +77,10 @@ class UserController extends Controller
         ]);
     }
 
+    public function dashboard(): View
+    {
+        $user = Auth::user();
+        return view('dashboard', compact('user'));
+    }
+
 }

@@ -18,5 +18,13 @@
                     </form>
                 </div> --}}
             </div>
+            <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#" class="bg-teal-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
+                        Login
+                    </a>
+                    <a href="#" class="bg-gray-700 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:bg-gray-600">
+                        Signin
+                    </a>
+                </div>
         </section>
 </div>

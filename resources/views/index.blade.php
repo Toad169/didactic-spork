@@ -75,26 +75,28 @@
         <!-- Hero Section -->
         <x-guest.hero />
 
-        <!-- Our Values Section -->
-        <x-guest.content1 />
+        @guest
+            <!-- Our Values Section -->
+            <x-guest.section1 />
 
-        <!-- Key Features Section -->
-        <x-guest.section2 />
+            <!-- Key Features Section -->
+            <x-guest.section2 />
 
-        <!-- Main Content Block 1 -->
-        <x-guest.content1 />
+            <!-- Main Content Block 1 -->
+            <x-guest.content1 />
 
-        <!-- Main Content Block 2 - Image on the left -->
-        <x-guest.content2 />
+            <!-- Main Content Block 2 - Image on the left -->
+            <x-guest.content2 />
 
-        <!-- How It Works Section -->
-        <x-guest.section3 />
+            <!-- How It Works Section -->
+            <x-guest.section3 />
 
-        <!-- Testimonials Section -->
-        <x-guest.section4 />
+            <!-- Testimonials Section -->
+            <x-guest.section4 />
 
-        <!-- Final CTA Section with form -->
-        <x-guest.section5 />
+            <!-- Final CTA Section with form -->
+            <x-guest.section5 />
+        @endguest
 
         <x-guest.footer />
 
