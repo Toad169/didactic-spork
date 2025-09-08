@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Saving;
 
 use Orchid\Screen\Screen;
 
-class FeeScreen extends Screen
+class SavingEditScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -23,7 +23,7 @@ class FeeScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'FeeScreen';
+        return 'SavingEditScreen';
     }
 
     /**

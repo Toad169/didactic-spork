@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Payment;
 
 use Orchid\Screen\Screen;
 
-class ContractScreen extends Screen
+class PaymentEditScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -23,7 +23,7 @@ class ContractScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'ContractScreen';
+        return 'PaymentEditScreen';
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Account;
 
 use Orchid\Screen\Screen;
 
-class ProfileScreen extends Screen
+class AccountListScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -23,7 +23,7 @@ class ProfileScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'ProfileScreen';
+        return 'AccountListScreen';
     }
 
     /**

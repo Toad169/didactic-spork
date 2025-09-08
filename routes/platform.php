@@ -20,7 +20,6 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
-
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -103,5 +102,3 @@ Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.ex
 Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 
 // Route::screen('idea', Idea::class, 'platform.screens.idea');
-
-
