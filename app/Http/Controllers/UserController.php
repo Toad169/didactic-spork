@@ -7,6 +7,17 @@ namespace App\Http\Controllers;
 // use App\Actions\User\Delete;
 
 use App\Models\User;
+use App\Models\Account;
+use App\Models\Transaction;
+use App\Models\AuditLog as Audit;
+use App\Models\Profile;
+use App\Models\Contract;
+use App\Models\Fee;
+use App\Models\Payment;
+use App\Models\ProfitDistribution as Profit;
+use App\Models\Saving;
+use App\Models\Zakat;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -77,8 +88,22 @@ class UserController extends Controller
         ]);
     }
 
+    // below functions is a View specific functions
+
     public function dashboard(): View
     {
+        $users = User::all();
+        $accounts = Account::all();
+        $transactions = Transaction::all();
+        $audit = Audit::all();
+        $profiles = Profile::all();
+        $contracts = Contract::all();
+        $fees = Fee::all();
+        $payments = Payment::all();
+        $profit = Profit::all();
+        $savings = Saving::all();
+        $zakats = Zakat::all();
+
         $user = Auth::user();
         return view('dashboard', compact('user'));
     }

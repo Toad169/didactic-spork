@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProfitDistribution;
 use Illuminate\Http\Request;
 
-class ProfitSharingController extends Controller
+class ProfitDistributionController extends Controller
 {
     //
     public function index()

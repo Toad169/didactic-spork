@@ -23,13 +23,13 @@
                     <!-- Register Modal -->
                     <livewire:auth.signin />
                 @endguest
-                @auth
+                {{-- @auth
                     <div class="mt-8 flex justify-center space-x-4">
                         <a href="{{ route('dashboard') }}" class="bg-teal-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
                             Dashboard
                         </a>
                     </div>
-                @endauth
+                @endauth --}}
             </div>
             <div class="absolute inset-0 z-0 opacity-20 bg-pattern"></div>
         </section>

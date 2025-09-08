@@ -20,9 +20,12 @@
                         <a href="{{ route('dashboard') }}" class="bg-teal-600 text-white font-bold px-4 py-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
                             Dashboard
                         </a>
-                        <a href="{{ route('logout') }}" class="bg-red-600 text-white font-bold px-4 py-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
-                            Logout
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="bg-red-600 text-white font-bold px-4 py-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 @endauth
                 <button class="md:hidden text-gray-400 focus:outline-none">

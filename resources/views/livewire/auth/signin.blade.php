@@ -14,6 +14,7 @@
         </button>
         <h2 class="text-2xl font-bold mb-6 text-white text-center">Register</h2>
         <form action="{{ route('signin.post') }}" method="POST" wire:submit.prevent="signin" class="space-y-4">
+            @csrf
             <input wire:model.defer="name" type="text" placeholder="Name"
                 class="w-full bg-gray-800 text-white border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-600 p-3 rounded-lg transition placeholder-gray-400 outline-none" />
             <input wire:model.defer="email" type="email" placeholder="Email"
