@@ -19,6 +19,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+use Resma\FilamentAwinTheme\FilamentAwinTheme;
+
 class StaffPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -52,6 +54,10 @@ class StaffPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                FilamentAwinTheme::make(),
             ]);
+
     }
 }
