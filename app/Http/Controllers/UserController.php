@@ -38,22 +38,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'         => 'required|string|max:255',
-            'email'        => 'required|email|unique:users,email',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
             'phone_number' => 'nullable|string|max:20',
-            'password'     => 'required|string|min:8',
+            'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
-            'name'         => $validated['name'],
-            'email'        => $validated['email'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
             'phone_number' => $validated['phone_number'] ?? null,
-            'password'     => bcrypt($validated['password']),
+            'password' => bcrypt($validated['password']),
         ]);
 
         return response()->json([
             'message' => 'User created successfully',
-            'user'    => $user,
+            'user' => $user,
         ], 201);
     }
     public function update(Request $request, $id)
@@ -61,10 +61,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $validated = $request->validate([
-            'name'         => 'sometimes|required|string|max:255',
-            'email'        => 'sometimes|required|email|unique:users,email,' . $user->id,
+            'name' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|email|unique:users,email,' . $user->id,
             'phone_number' => 'nullable|string|max:20',
-            'password'     => 'sometimes|required|string|min:8',
+            'password' => 'sometimes|required|string|min:8',
         ]);
 
         if (isset($validated['password'])) {
@@ -75,7 +75,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User updated successfully',
-            'user'    => $user,
+            'user' => $user,
         ]);
     }
     public function destroy($id)
@@ -92,20 +92,25 @@ class UserController extends Controller
 
     public function dashboard(): View
     {
-        $users = User::all();
-        $accounts = Account::all();
-        $transactions = Transaction::all();
-        $audit = Audit::all();
-        $profiles = Profile::all();
-        $contracts = Contract::all();
-        $fees = Fee::all();
-        $payments = Payment::all();
-        $profit = Profit::all();
-        $savings = Saving::all();
-        $zakats = Zakat::all();
+        // $users = User::all();
+        // $accounts = Account::all();
+        // $transactions = Transaction::all();
+        // $audit = Audit::all();
+        // $profiles = Profile::all();
+        // $contracts = Contract::all();
+        // $fees = Fee::all();
+        // $payments = Payment::all();
+        // $profit = Profit::all();
+        // $savings = Saving::all();
+        // $zakats = Zakat::all();
 
         $user = Auth::user();
         return view('dashboard', compact('user'));
     }
 
+    public function home()
+    {
+        $user = Auth::user();
+        return view('dashboard.home', compact('user'));
+    }
 }
