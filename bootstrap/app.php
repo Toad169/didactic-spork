@@ -16,10 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             // 'auth' => \App\Http\Middleware\Authenticate::class,
             // 'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-            'user' => \App\Http\Middleware\UserMiddleware::class,
-            'admin' => \App\Http\Middleware\AdminMiddleware::class,
-            'auditor' => \App\Http\Middleware\AuditorMiddleware::class,
-            'staff' => \App\Http\Middleware\StaffMiddleware::class,
+            // 'user' => \App\Http\Middleware\UserMiddleware::class,
+            // 'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            // 'auditor' => \App\Http\Middleware\AuditorMiddleware::class,
+            // 'staff' => \App\Http\Middleware\StaffMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
