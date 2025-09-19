@@ -18,7 +18,7 @@
                     <a href="#how-it-works" class="text-gray-400 hover:text-white transition duration-300">How It Works</a>
                     <a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a>
                     --}}
-                    <a href="{{ route('dashboard') }}"
+                    <a href="{{ route('dashboard.home') }}"
                         class="bg-teal-600 text-white font-bold px-4 py-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
                         Dashboard
                     </a>
