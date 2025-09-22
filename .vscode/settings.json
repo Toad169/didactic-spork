@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:laraproject}/database/database.sqlite",
+            "name": "laraproject",
+            "group": "siqilit"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
