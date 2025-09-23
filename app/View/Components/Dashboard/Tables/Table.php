@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Dashboard\Cards;
+namespace App\View\Components\Dashboard\Tables;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class BalanceCard extends Component
+class Table extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class BalanceCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard.cards.balance-card');
+        return view('components.dashboard.tables.table');
     }
 }
