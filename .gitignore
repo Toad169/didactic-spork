@@ -27,6 +27,7 @@ yarn-error.log
 Archive.zip
 Archive1.zip
 Archive2.zip
+laraproject.session.sql
 
 #Ignore vscode AI rules
 .github\copilot-instructions.md
