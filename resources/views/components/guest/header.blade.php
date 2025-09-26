@@ -12,7 +12,7 @@
                     <a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a>
                 </div>
             @endguest
-            @auth
+            {{-- @auth
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="{{ route('home') }}"
                         class="bg-teal-600 text-white font-bold px-4 py-2 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
@@ -26,7 +26,7 @@
                         </button>
                     </form>
                 </div>
-            @endauth
+            @endauth --}}
             <button class="md:hidden text-gray-400 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">

@@ -26,14 +26,21 @@
                 <!-- Register Modal -->
                 <livewire:auth.signin />
             @endguest
-            {{-- @auth
-            <div class="mt-8 flex justify-center space-x-4">
+            @auth
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 mt-8">
                 <a href="{{ route('dashboard') }}"
-                    class="bg-teal-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-2xl">
+                class="bg-teal-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition-transform hover:scale-105 hover:shadow-2xl">
                     Dashboard
                 </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                            class="bg-red-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg transition-transform hover:scale-105 hover:shadow-2xl">
+                        Logout
+                    </button>
+                </form>
             </div>
-            @endauth --}}
+        @endauth
         </div>
         <div class="absolute inset-0 z-0 opacity-20 bg-pattern"></div>
     </section>

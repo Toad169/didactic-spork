@@ -27,6 +27,12 @@ Route::middleware(['auth'])
 
         Route::get('/dashboard/home', [View::class, 'home'])->name('home');
 
+        // Route::get('/dashboard/accounts', [View::class, 'accountIndex'])->name('accounts.index');
+
+        // Route::get('/dashboard/accounts/{account}', [View::class, 'accountShow'])->name('accounts.show');
+
+        // Route::get('/dashboard/accounts/{account}/transactions', [View::class, 'accountTransaction'])->name('accounts.transactions');
+
         // Additional named routes for missing blade links
         Route::post('/dashboard/security/change-password', 'App\Http\Controllers\SecurityController@changePassword')->name('dashboard.password.change');
     });
