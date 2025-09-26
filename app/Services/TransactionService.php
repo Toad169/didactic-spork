@@ -67,4 +67,85 @@ class TransactionService
 
         return $transaction->delete();
     }
+
+    /**
+     * Get transactions by user ID.
+     */
+    public function getTransactionsByUserId(int $userId): Collection
+    {
+        return $this->transaction->where('user_id', $userId)->get();
+    }
+
+    /**
+     * Get transactions by account ID.
+     */
+    public function getTransactionsByAccountId(int $accountId): Collection
+    {
+        return $this->transaction->where('account_id', $accountId)->get();
+    }
+
+    /**
+     * Get transactions by date range.
+     */
+    public function getTransactionsByDateRange(string $startDate, string $endDate): Collection
+    {
+        return $this->transaction->whereBetween('created_at', [$startDate, $endDate])->get();
+    }
+
+    /**
+     * Get transactions by transaction type.
+     */
+    public function getTransactionsByType(string $type): Collection
+    {
+        return $this->transaction->where('type', $type)->get();
+    }
+
+    /**
+     * Get total transaction amount by user ID.
+     */
+    public function getTotalTransactionAmountByUserId(int $userId): float
+    {
+        return $this->transaction->where('user_id', $userId)->sum('amount');
+    }
+
+    /**
+     * Get total transaction amount by account ID.
+     */
+    public function getTotalTransactionAmountByAccountId(int $accountId): float
+    {
+        return $this->transaction->where('account_id', $accountId)->sum('amount');
+    }
+
+    /**
+     * Get recent transactions.
+     */
+    public function getRecentTransactions(int $limit = 10): Collection
+    {
+        return $this->transaction->orderByDesc('created_at')->limit($limit)->get();
+    }
+
+    /**
+     * Update a transaction for a specific user.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function updateTransactionForUser(int $id, array $data, int $userId): Transaction
+    {
+        $transaction = $this->transaction->where('id', $id)->where('user_id', $userId)->firstOrFail();
+        $transaction->update($data);
+
+        return $transaction;
+    }
+
+    public function getTransactionByIdAndUserId(int $id, int $userId): ?Transaction
+    {
+        return $this->transaction->where('id', $id)->where('user_id', $userId)->first();
+    }
+
+    public function deleteTransactionForUser(int $id, int $userId): bool
+    {
+        $transaction = $this->transaction->where('id', $id)->where('user_id', $userId)->firstOrFail();
+
+        return $transaction->delete();
+    }
 }

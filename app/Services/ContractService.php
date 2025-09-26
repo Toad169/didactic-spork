@@ -67,4 +67,25 @@ class ContractService
 
         return $contract->delete();
     }
+
+    /**
+     * Get contracts for a specific account.
+     */
+    public function getContractsByAccountId(int $accountId): Collection
+    {
+        return $this->contract->where('account_id', $accountId)->get();
+    }
+
+    /**
+     * Terminate a contract.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function terminateContract(int $id): bool
+    {
+        $contract = $this->contract->findOrFail($id);
+        $contract->status = 'terminated';
+
+        return $contract->save();
+    }
 }

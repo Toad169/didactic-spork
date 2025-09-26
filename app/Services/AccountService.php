@@ -57,6 +57,19 @@ class AccountService
     }
 
     /**
+     * Close an account.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function closeAccount(int $id): bool
+    {
+        $account = $this->account->findOrFail($id);
+        $account->status = 'closed';
+
+        return $account->save();
+    }
+
+    /**
      * Delete an account.
      *
      * @throws ModelNotFoundException

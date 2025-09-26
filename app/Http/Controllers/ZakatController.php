@@ -2,44 +2,115 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Zakat;
+use App\Services\ZakatService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class ZakatController extends Controller
 {
-    //
-    public function index()
+    /**
+     * The Zakat service instance.
+     */
+    protected ZakatService $zakatService;
+
+    /**
+     * Create a new ZakatController instance.
+     */
+    public function __construct(ZakatService $zakatService)
     {
-        $zakatRecords = Zakat::all();
-        return response()->json($zakatRecords);
+        $this->zakatService = $zakatService;
     }
 
-    public function store(Request $request)
+    /**
+     * Display a listing of Zakat entries.
+     */
+    public function index(): JsonResponse
     {
-        $zakat = Zakat::create($request->all());
-        return response()->json($zakat, 201);
+        $zakats = $this->zakatService->getAllZakats();
+
+        return response()->json($zakats);
     }
 
-    public function show($id)
+    /**
+     * Display the specified Zakat entry.
+     */
+    public function show(int $id): JsonResponse
     {
-        $zakat = Zakat::find($id);
-        if (!$zakat) {
-            return response()->json(['message' => 'Zakat record not found'], 404);
-        }
+        $zakat = $this->zakatService->getZakatById($id);
+
         return response()->json($zakat);
     }
 
-    // public function update(Request $request, $id)
-    // {
-
-    // }
-
-    public function calculate(Request $request)
+    /**
+     * Store a newly created Zakat entry.
+     *
+     * @throws ValidationException
+     */
+    public function store(Request $request): JsonResponse
     {
-        // Placeholder for Zakat calculation logic
-        $amount = $request->input('amount');
-        $rate = 0.025; // Example rate of 2.5%
-        $zakatDue = $amount * $rate;
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'account_id' => 'required|exists:accounts,id',
+            'income' => 'required|numeric|min:0',
+            'savings' => 'required|numeric|min:0',
+            'gold' => 'required|numeric|min:0',
+            'silver' => 'required|numeric|min:0',
+            'assets' => 'required|numeric|min:0',
+            'debts' => 'required|numeric|min:0',
+            'calculation_year' => 'required|integer',
+        ]);
+
+        $zakat = $this->zakatService->createZakat($validatedData);
+
+        return response()->json($zakat, 201);
+    }
+
+    /**
+     * Update the specified Zakat entry.
+     *
+     * @throws ValidationException
+     */
+    public function update(Request $request, int $id): JsonResponse
+    {
+        $validatedData = $request->validate([
+            'income' => 'sometimes|required|numeric|min:0',
+            'savings' => 'sometimes|required|numeric|min:0',
+            'gold' => 'sometimes|required|numeric|min:0',
+            'silver' => 'sometimes|required|numeric|min:0',
+            'assets' => 'sometimes|required|numeric|min:0',
+            'debts' => 'sometimes|required|numeric|min:0',
+            'calculation_year' => 'sometimes|required|integer',
+        ]);
+
+        $zakat = $this->zakatService->updateZakat($id, $validatedData);
+
+        return response()->json($zakat);
+    }
+
+    /**
+     * Remove the specified Zakat entry.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        $this->zakatService->deleteZakat($id);
+
+        return response()->json(['message' => 'Zakat entry deleted']);
+    }
+
+    /**
+     * Calculate Zakat for a user based on their ID and year.
+     */
+    public function calculate(Request $request, int $userId): JsonResponse
+    {
+        $validatedData = $request->validate([
+            'year' => 'required|integer|min:2000',
+        ]);
+
+        $zakatDue = $this->zakatService->calculateZakatForUser($userId, $validatedData['year']);
 
         return response()->json(['zakat_due' => $zakatDue]);
     }

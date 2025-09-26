@@ -6,7 +6,7 @@ use App\Models\Fee;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class FeeServices
+class FeeService
 {
     /**
      * The Fee model instance.

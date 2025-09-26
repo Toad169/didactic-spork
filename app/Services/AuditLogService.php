@@ -46,4 +46,46 @@ class AuditLogService
             ->where('model_id', $modelId)
             ->get();
     }
+
+    public function clearLogs(): void
+    {
+        $this->auditLog->truncate();
+    }
+
+    /**
+     * Delete an audit log entry.
+     */
+    public function deleteLog(int $id): bool
+    {
+        $log = $this->auditLog->findOrFail($id);
+
+        return $log->delete();
+    }
+
+    /**
+     * Get a single audit log by its ID.
+     */
+    public function getLogById(int $id): ?AuditLog
+    {
+        return $this->auditLog->find($id);
+    }
+
+    /**
+     * Update an existing audit log.
+     */
+    public function updateLog(int $id, array $data): AuditLog
+    {
+        $log = $this->auditLog->findOrFail($id);
+        $log->update($data);
+
+        return $log;
+    }
+
+    /**
+     * Get all audit logs.
+     */
+    public function getAllLogs(): Collection
+    {
+        return $this->auditLog->all();
+    }
 }

@@ -6,7 +6,7 @@ use App\Models\ProfitDistribution;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class ProfitDisributionService
+class ProfitDistributionService
 {
     /**
      * The ProfitDistribution model instance.

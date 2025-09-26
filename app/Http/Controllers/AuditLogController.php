@@ -2,23 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AuditLog;
-use Illuminate\Http\Request;
+use App\Services\AuditLogService;
+use Illuminate\Http\JsonResponse;
 
 class AuditLogController extends Controller
 {
-    //
-    public function index()
+    /**
+     * The audit log service instance.
+     */
+    protected AuditLogService $auditLogService;
+
+    /**
+     * Create a new AuditLogController instance.
+     */
+    public function __construct(AuditLogService $auditLogService)
     {
-        $logs = AuditLog::all();
+        $this->auditLogService = $auditLogService;
+    }
+
+    /**
+     * Display a listing of the audit logs.
+     */
+    public function index(): JsonResponse
+    {
+        $logs = $this->auditLogService->getAllLogs();
+
         return response()->json($logs);
     }
-    public function show($id)
+
+    /**
+     * Display the specified audit log.
+     */
+    public function show(int $id): JsonResponse
     {
-        $log = AuditLog::find($id);
-        if (!$log) {
-            return response()->json(['message' => 'Audit log not found'], 404);
-        }
+        $log = $this->auditLogService->getLogById($id);
+
         return response()->json($log);
     }
 }

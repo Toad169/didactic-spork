@@ -67,4 +67,69 @@ class SavingService
 
         return $saving->delete();
     }
+
+    public function getSavingsByUserId(int $userId): Collection
+    {
+        return $this->saving->where('user_id', $userId)->get();
+    }
+
+    public function getTotalSavingsByUserId(int $userId): float
+    {
+        return $this->saving->where('user_id', $userId)->sum('amount');
+    }
+
+    public function getSavingsByDateRange(string $startDate, string $endDate): Collection
+    {
+        return $this->saving->whereBetween('created_at', [$startDate, $endDate])->get();
+    }
+
+    public function getAverageSavingAmount(): float
+    {
+        return $this->saving->avg('amount');
+    }
+
+    public function getTopSavvyUsers(int $limit = 10): Collection
+    {
+        return $this->saving->select('user_id')
+            ->selectRaw('SUM(amount) as total_saving')
+            ->groupBy('user_id')
+            ->orderByDesc('total_saving')
+            ->limit($limit)
+            ->get();
+    }
+
+    public function getSavingsWithMinimumAmount(float $minAmount): Collection
+    {
+        return $this->saving->where('amount', '>=', $minAmount)->get();
+    }
+
+    public function getSavingsWithMaximumAmount(float $maxAmount): Collection
+    {
+        return $this->saving->where('amount', '<=', $maxAmount)->get();
+    }
+
+    public function getSavingsByType(string $type): Collection
+    {
+        return $this->saving->where('type', $type)->get();
+    }
+
+    public function getRecentSavings(int $days = 30): Collection
+    {
+        $date = now()->subDays($days);
+
+        return $this->saving->where('created_at', '>=', $date)->get();
+    }
+
+    /**
+     * Close a saving.
+     *
+     * @throws ModelNotFoundException
+     */
+    public function closeSaving(int $id): bool
+    {
+        $saving = $this->saving->findOrFail($id);
+        $saving->status = 'closed';
+
+        return $saving->save();
+    }
 }

@@ -2,46 +2,62 @@
 
 namespace App\Http\Controllers;
 
-// use App\Actions\User\Create;
-// use App\Actions\User\Update;
-// use App\Actions\User\Delete;
-
-use App\Models\User;
+use App\Services\UserService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    //
-    public function index()
+    /**
+     * The user service instance.
+     */
+    protected UserService $userService;
+
+    /**
+     * Create a new UserController instance.
+     */
+    public function __construct(UserService $userService)
     {
-        $users = User::all();
+        $this->userService = $userService;
+    }
+
+    /**
+     * Display a listing of the users.
+     */
+    public function index(): View
+    {
+        $users = $this->userService->getAllUsers();
 
         return view('users.index', compact('users'));
     }
 
-    public function show($id)
+    /**
+     * Display the specified user.
+     */
+    public function show(int $id): View
     {
-        $user = User::findOrFail($id);
+        $user = $this->userService->getUserById($id);
 
         return view('users.show', compact('user'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created user in storage.
+     *
+     * @throws ValidationException
+     */
+    public function store(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'nullable|string|max:20',
             'password' => 'required|string|min:8',
         ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone_number' => $validated['phone_number'] ?? null,
-            'password' => bcrypt($validated['password']),
-        ]);
+        $user = $this->userService->createUser($validatedData);
 
         return response()->json([
             'message' => 'User created successfully',
@@ -49,22 +65,21 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified user in storage.
+     *
+     * @throws ValidationException
+     */
+    public function update(Request $request, int $id): JsonResponse
     {
-        $user = User::findOrFail($id);
-
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|unique:users,email,'.$user->id,
+            'email' => 'sometimes|required|email|unique:users,email,'.$id,
             'phone_number' => 'nullable|string|max:20',
             'password' => 'sometimes|required|string|min:8',
         ]);
 
-        if (isset($validated['password'])) {
-            $validated['password'] = bcrypt($validated['password']);
-        }
-
-        $user->update($validated);
+        $user = $this->userService->updateUser($id, $validatedData);
 
         return response()->json([
             'message' => 'User updated successfully',
@@ -72,16 +87,15 @@ class UserController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified user from storage.
+     */
+    public function destroy(int $id): JsonResponse
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $this->userService->deleteUser($id);
 
         return response()->json([
             'message' => 'User deleted successfully',
         ]);
     }
-
-    // below functions is a View specific functions
-
 }
