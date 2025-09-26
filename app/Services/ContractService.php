@@ -10,8 +10,6 @@ class ContractService
 {
     /**
      * The Contract model instance.
-     *
-     * @var Contract
      */
     protected Contract $contract;
 
@@ -54,6 +52,7 @@ class ContractService
     {
         $contract = $this->contract->findOrFail($id);
         $contract->update($data);
+
         return $contract;
     }
 
@@ -65,6 +64,7 @@ class ContractService
     public function deleteContract(int $id): bool
     {
         $contract = $this->contract->findOrFail($id);
+
         return $contract->delete();
     }
 }
