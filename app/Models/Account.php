@@ -4,59 +4,86 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Account extends Model
 {
-    //
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
-    'account_number',
-    'account_type',
-    'title',
+        'account_number',
+        'account_type',
+        'title',
     ];
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
     protected $guarded = [
-    'user_id',
-    'status',
+        'user_id',
+        'status',
     ];
 
-    protected $hidden = [
-    'user_id', // optional if you don't want it exposed
-    ];
-
-
-    public function user()
+    /**
+     * Get the user that owns the Account.
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function contracts()
+    /**
+     * Get the contracts for the Account.
+     */
+    public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class);
     }
 
-    public function fees()
+    /**
+     * Get the fees for the Account.
+     */
+    public function fees(): HasMany
     {
         return $this->hasMany(Fee::class);
     }
 
-    public function profit()
+    /**
+     * Get the profit distributions for the Account.
+     */
+    public function profitDistributions(): HasMany
     {
         return $this->hasMany(ProfitDistribution::class);
     }
 
-    public function savings()
+    /**
+     * Get the savings for the Account.
+     */
+    public function savings(): HasMany
     {
         return $this->hasMany(Saving::class);
     }
 
-    public function transaction()
+    /**
+     * Get the transactions for the Account.
+     */
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
 
-    public function zakat()
+    /**
+     * Get the zakats for the Account.
+     */
+    public function zakats(): HasMany
     {
         return $this->hasMany(Zakat::class);
     }

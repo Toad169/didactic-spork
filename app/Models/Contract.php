@@ -4,18 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contract extends Model
 {
-    //
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
         'contract_number',
         'contract_type',
         'title',
     ];
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
     protected $guarded = [
         'user_id',
         'account_id',
@@ -24,28 +35,34 @@ class Contract extends Model
         'expired_at',
     ];
 
-    protected $hidden = [
-        'user_id',
-        'account_id', // optional, only if you don't want APIs to show it
-    ];
-
-
-    public function account()
+    /**
+     * Get the account that owns the Contract.
+     */
+    public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
     }
 
-    public function user()
+    /**
+     * Get the user that owns the Contract.
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function profit()
+    /**
+     * Get the profit distributions for the Contract.
+     */
+    public function profitDistributions(): HasMany
     {
         return $this->hasMany(ProfitDistribution::class);
     }
 
-    public function transactions()
+    /**
+     * Get the transactions for the Contract.
+     */
+    public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }

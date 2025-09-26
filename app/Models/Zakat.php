@@ -4,46 +4,47 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Zakat extends Model
 {
-    //
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
     protected $fillable = [
-        'income',
-        'savings',
-        'gold',
-        'silver',
-        'assets',
-        'debts',
-        'total_wealth',
-        'nisab_threshhold',
-        'zakatable_amount',
-        'zakat_due',
-        'calculation_year',
-    ];
-
-    protected $guarded = [
-        'user_id',
-        'account_id',
+        'amount',
+        'year',
         'paid',
         'paid_at',
     ];
 
-    protected $hidden = [
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $guarded = [
         'user_id',
         'account_id',
     ];
 
-    public function user()
+    /**
+     * Get the user that owns the Zakat.
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function account()
+    /**
+     * Get the account that owns the Zakat.
+     */
+    public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
     }
-
 }
