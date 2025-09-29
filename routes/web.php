@@ -1,40 +1,70 @@
 <?php
 
-use App\Http\Controllers\Auth\LogInController as LogIn;
-use App\Http\Controllers\Auth\SignInController as SignIn;
-// use App\Http\Controllers\UserController as User;
-use App\Http\Controllers\ViewController as View;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SavingController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', view: 'index');
+// Public routes
+Route::middleware('guest')->group(function () {
+    Route::view('/', 'index');
+});
 
-Route::post('/login', [LogIn::class, 'login'])->name('login.post');
-Route::post('/signin', [SignIn::class, 'signin'])->name('signin.post');
-Route::post('/logout', [LogIn::class, 'logout'])->name('logout');
+// Authentication routes (assuming these controllers exist)
+Route::post('/login', [App\Http\Controllers\Auth\LogInController::class, 'login'])->name('login.post');
+Route::post('/signin', [App\Http\Controllers\Auth\SignInController::class, 'signin'])->name('signin.post');
+Route::post('/logout', [App\Http\Controllers\Auth\LogInController::class, 'logout'])->name('logout');
 
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
+// Authenticated routes
+Route::middleware(['auth'])->group(function () {
+    // Dashboard routes
+    // Route::get('/', [ViewController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', [ViewController::class, 'home'])->name('home');
 
-// Route::view('profile', 'profile')
-//     ->middleware(['auth'])
-//     ->name('profile');
+    // Savings routes
+    Route::resource('savings', SavingController::class);
+    Route::post('savings/{id}/close', [SavingController::class, 'close'])->name('savings.close');
 
-Route::middleware(['auth'])
-    ->group(function () {
-        Route::get('/dashboard', [View::class, 'dashboard'])->name('dashboard');
+    // Transaction routes
+    Route::resource('transactions', TransactionController::class);
+    Route::post('transactions/{id}/cancel', [TransactionController::class, 'cancel'])->name('transactions.cancel');
 
-        Route::get('/dashboard/home', [View::class, 'home'])->name('home');
+    // User routes (web version - view only)
+    Route::resource('users', UserController::class)->only(['index', 'show']);
+});
 
-        // Route::get('/dashboard/accounts', [View::class, 'accountIndex'])->name('accounts.index');
+Route::middleware('role.staff')->group(function () {
+    Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard/home', [ViewController::class, 'home'])->name('home');
 
-        // Route::get('/dashboard/accounts/{account}', [View::class, 'accountShow'])->name('accounts.show');
+    // Savings routes
+    Route::resource('savings', SavingController::class);
+    Route::post('savings/{id}/close', [SavingController::class, 'close'])->name('savings.close');
 
-        // Route::get('/dashboard/accounts/{account}/transactions', [View::class, 'accountTransaction'])->name('accounts.transactions');
+    // Transaction routes
+    Route::resource('transactions', TransactionController::class);
+    Route::post('transactions/{id}/cancel', [TransactionController::class, 'cancel'])->name('transactions.cancel');
 
-        // Additional named routes for missing blade links
-        Route::post('/dashboard/security/change-password', 'App\Http\Controllers\SecurityController@changePassword')->name('dashboard.password.change');
-    });
+    // User routes (web version - view only)
+    Route::resource('users', UserController::class)->only(['index', 'show']);
+});
+
+Route::middleware('role.admin')->group(function () {
+    Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard/home', [ViewController::class, 'home'])->name('home');
+
+    // Savings routes
+    Route::resource('savings', SavingController::class);
+    Route::post('savings/{id}/close', [SavingController::class, 'close'])->name('savings.close');
+
+    // Transaction routes
+    Route::resource('transactions', TransactionController::class);
+    Route::post('transactions/{id}/cancel', [TransactionController::class, 'cancel'])->name('transactions.cancel');
+
+    // User routes (web version - view only)
+    Route::resource('users', UserController::class)->only(['index', 'show']);
+});
 
 require __DIR__.'/auth.php';
+require __DIR__.'/api.php';
