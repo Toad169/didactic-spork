@@ -33,4 +33,69 @@ class ViewController extends Controller
 
         return view('dashboard.home', compact('user'));
     }
+
+    public function notifications()
+    {
+        $user = Auth::user();
+
+        return view('dashboard.natifications', compact('natifications'));
+    }
+
+     public function saving()
+    {
+        $user = Auth::user();
+
+        return view('dashboard.saving', compact('saving'));
+    }
+
+     public function setting()
+    {
+        $user = Auth::user();
+
+        return view('dashboard.setting', compact('setting'));
+    }
+
+    public function transactions()
+    {
+        $user = Auth::user();
+
+        $transactions = $user->transactions; 
+
+        return view('dashboard.transactions', compact('transactions'));
+    }
+
+    public function users()
+    {
+        $users = Auth::user();
+        return view('dashboard.users', compact('users'));
+    }
+
+    public function zakat()
+    {
+        $user = Auth::user();
+
+        return view('dashboard. zakat', compact('zakat'));
+    }
+
+    public function dashboards()
+    {
+        $user = Auth::user();
+
+        return view('dashboard. dashboard', compact('dashboard'));
+    }
+
+    public function profile()
+    {
+    $user = Auth::user();
+
+    return view('dashboard.profile', compact('profile'));
+    }
+
+   public function laporan()
+{
+    $user = Auth::user();
+ 
+    return view('dashboard.laporan', compact('laporan'));
+}
+
 }
