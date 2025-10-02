@@ -1,3 +1,10 @@
-<div>
-    <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
-</div>
+@extends('dashboard')
+
+@section('title', 'User Management')
+
+@section('content')
+    <div>
+        <h1>User Management</h1>
+        <p>Manage your users here.</p>
+    </div>
+@endsection

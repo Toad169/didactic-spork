@@ -13,6 +13,14 @@ class ViewController extends Controller
     /**
      * Show the application dashboard.
      */
+    public function index(): View
+    {
+        return view('index');
+    }
+
+    /**
+     * Show the application dashboard.
+     */
     public function dashboard(): View
     {
         // Retrieve the authenticated user

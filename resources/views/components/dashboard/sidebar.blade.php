@@ -5,7 +5,7 @@
         <ul class="space-y-2 font-medium">
             @switch(Auth::user()->role)
                 @case('admin')
-                    <x-dashboard.sidebar.item href="{{ route('dashboard.home') }}">
+                    <x-dashboard.sidebar.item href="{{ route('home') }}">
                         <x-slot name="icon">
                             {{-- You can pass in your own SVG icon --}}
                             <svg><!-- ... --></svg>
@@ -13,7 +13,7 @@
                         Dashboard
                     </x-dashboard.sidebar.item>
 
-                    <x-dashboard.sidebar.item href="{{ route('dashboard.user.index') }}">
+                    <x-dashboard.sidebar.item href="{{ route('user.index') }}">
                         <x-slot name="icon">
                             {{-- You can pass in your own SVG icon --}}
                             <svg><!-- ... --></svg>
@@ -21,7 +21,7 @@
                         Users
                     </x-dashboard.sidebar.item>
 
-                    <x-dashboard.sidebar.item href="{{ route('dashboard.transaction.index') }}">
+                    <x-dashboard.sidebar.item href="{{ route('transaction.index') }}">
                         <x-slot name="icon">
                             {{-- You can pass in your own SVG icon --}}
                             <svg><!-- ... --></svg>
@@ -29,7 +29,7 @@
                         Transactions
                     </x-dashboard.sidebar.item>
 
-                    <x-dashboard.sidebar.item href="{{ route('dashboard.saving.index') }}">
+                    <x-dashboard.sidebar.item href="{{ route('saving.index') }}">
                         <x-slot name="icon">
                             {{-- You can pass in your own SVG icon --}}
                             <svg><!-- ... --></svg>
@@ -40,11 +40,71 @@
                     @break
 
                 @case('staff')
-                    
+                <x-dashboard.sidebar.item href="{{ route('home') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Dashboard
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('users.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Users
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('transactions.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Transactions
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('savings.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Savings
+                </x-dashboard.sidebar.item>
                     @break
 
                 @case('user')
-                    
+                <x-dashboard.sidebar.item href="{{ route('home') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Dashboard
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('users.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Users
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('transactions.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Transactions
+                </x-dashboard.sidebar.item>
+
+                <x-dashboard.sidebar.item href="{{ route('savings.index') }}">
+                    <x-slot name="icon">
+                        {{-- You can pass in your own SVG icon --}}
+                        <svg><!-- ... --></svg>
+                    </x-slot>
+                    Savings
+                </x-dashboard.sidebar.item>
                     @break
 
                 @default
