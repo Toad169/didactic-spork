@@ -30,7 +30,7 @@ class SavingController extends Controller
     {
         $savings = $this->savingService->getAllSavings();
 
-        return view('savings.index', compact('savings'));
+        return view('dashboard.saving.index', compact('savings'));
     }
 
     /**
@@ -40,7 +40,7 @@ class SavingController extends Controller
     {
         $saving = $this->savingService->getSavingById($id);
 
-        return view('savings.show', compact('saving'));
+        return view('dashboard.saving.show', compact('saving'));
     }
 
     /**

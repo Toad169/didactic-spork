@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $users = $this->userService->getAllUsers();
 
-        return view('users.index', compact('users'));
+        return view('dashboard.user.index', compact('users'));
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $user = $this->userService->getUserById($id);
 
-        return view('users.show', compact('user'));
+        return view('dashboard.user.show', compact('user'));
     }
 
     /**

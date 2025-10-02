@@ -31,7 +31,7 @@ class TransactionController extends Controller
     {
         $transactions = $this->transactionService->getTransactionsByUserId(Auth::id());
 
-        return view('transactions.index', compact('transactions'));
+        return view('dashboard.transaction.index', compact('transactions'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TransactionController extends Controller
     {
         $transaction = $this->transactionService->getTransactionByIdAndUserId($id, Auth::id());
 
-        return view('transactions.show', compact('transaction'));
+        return view('dashboard.transaction.show', compact('transaction'));
     }
 
     /**
